@@ -25,7 +25,6 @@ namespace Horror.Lucy
         {
             Jerk();
             float waitSeconds = RandomUtils.Exponential(averageJerksPerSecond);
-            Debug.Log($"seconds until next jerk: {waitSeconds}");
             Invoke(nameof(JerkAndSchedule), waitSeconds);
         }
 
