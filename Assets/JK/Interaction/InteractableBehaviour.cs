@@ -10,9 +10,15 @@ namespace JK.Interaction
     {
         #region Inspector
 
-        
+
 
         #endregion
+
+        // declare a start method so that the monobehaviour can be disabled in in the inspector if needed
+        protected virtual void Start()
+        {
+
+        }
 
         public void Interact(RaycastHit hit)
         {
