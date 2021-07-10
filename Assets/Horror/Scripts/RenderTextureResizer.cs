@@ -35,6 +35,7 @@ namespace Horror
                 height = (int)(renderTexture.width * rawImage.rectTransform.rect.height / rawImage.rectTransform.rect.width),
             };
 
+            copy.filterMode = renderTexture.filterMode;
             rawImage.texture = copy;
             playerCamera.targetTexture = copy;
 
