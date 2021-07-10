@@ -16,12 +16,15 @@ namespace Horror.Input
 
         public LayerMask layerMask = ~0;
 
-        public float maxDistance = 5;
+        public float distance = 5;
+
+        public float mobileMaxTouchSeconds = 0.2f;
 
         #endregion
 
-        [Inject]
-        private ActionKeysReader actionKeys = null;
+        private bool hasAlreadyFired = false;
+
+        private float touchSeconds;
 
         private void Start()
         {
@@ -30,56 +33,66 @@ namespace Horror.Input
 
         private void Update()
         {
-            KeyCode code = actionKeys.ReadKeyDown().FirstOrDefault();
+            if (!Application.isMobilePlatform)
+                DesktopUpdate();
+            else
+                MobileUpdate();
+        }
 
-            if (code == default)
+        private void DesktopUpdate()
+        {
+            if (!hasAlreadyFired)
+            {
+                if (UnityEngine.Input.GetAxis("Fire1") == 1)
+                {
+                    Raycast();
+                    hasAlreadyFired = true;
+                }
+            }
+            else if (UnityEngine.Input.GetAxis("Fire1") != 1)
+            {
+                hasAlreadyFired = false;
+            }
+        }
+
+        private void MobileUpdate()
+        {
+            if (UnityEngine.Input.touches.Length == 0)
+            {
+                touchSeconds = 0;
+                hasAlreadyFired = false;
+                return;
+            }
+
+            if (hasAlreadyFired)
                 return;
 
-            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, maxDistance * GetDistanceMultiplier(), layerMask))
+            touchSeconds += Time.deltaTime;
+
+            if (touchSeconds < mobileMaxTouchSeconds
+                && UnityEngine.Input.touches.Length == 1
+                && UnityEngine.Input.touches[0].phase == TouchPhase.Ended
+                && UnityEngine.Input.touches[0].position.x > Screen.width / 2.0f
+                )
+            {
+                Raycast();
+                hasAlreadyFired = true;
+            }
+        }
+
+        private void Raycast()
+        {
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, distance, layerMask))
             {
                 if (hit.collider.TryGetComponent(out IInteractable interactable))
                     interactable.Interact(hit);
             }
         }
 
-        private float GetDistanceMultiplier()
-        {
-            Vector3 straightForward = transform.forward;
-            straightForward.y = 0;
-            straightForward = straightForward.normalized;
-
-            float dot = Vector3.Dot(straightForward, transform.forward);
-            float halfDot = 0.5f - Mathf.Abs(dot - 0.5f);
-            float multiplier = 1 + halfDot;
-
-            //Debug.Log($"dot from straight {dot} half {halfDot} mul {multiplier}");
-
-            return multiplier;
-        }
-
-#if UNITY_EDITOR
-
-        private int activeRayFrames = 16;
-        private int remainingRayFrames = 0;
-
         private void OnDrawGizmos()
         {
-            if (actionKeys == null)
-                return;
-
-            KeyCode code = actionKeys.ReadKeyDown().FirstOrDefault();
-
-            if (code != default)
-                remainingRayFrames = activeRayFrames;
-            else if (remainingRayFrames > 0)
-                remainingRayFrames--;
-
-            Gizmos.color = remainingRayFrames > 0 ? Color.green : Color.red;
-            Gizmos.DrawLine(transform.position, transform.position + transform.forward * maxDistance * GetDistanceMultiplier());
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, transform.position + transform.forward * distance);
         }
-#endif
     }
-    
-    [Serializable]
-    public class UnityEventPlayerInputRaycastInteraction : UnityEvent<PlayerInputRaycastInteraction> { }
 }
