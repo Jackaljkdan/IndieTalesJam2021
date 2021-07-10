@@ -16,6 +16,8 @@ namespace JK.Interaction
 
         public bool IsHighlighting { get; private set; }
 
+        private Coroutine coroutine;
+
         // declare a start method so that the monobehaviour can be disabled in in the inspector if needed
         protected virtual void Start() { }
 
@@ -23,22 +25,28 @@ namespace JK.Interaction
         {
             if (!IsHighlighting)
             {
+                //Debug.Log($"starting {name} highlight");
                 StartHighlight(hit);
                 IsHighlighting = true;
-                return;
             }
             else
             {
                 StayHighlight(hit);
-                CancelInvoke(nameof(OnStoppedRaycasting));
-                Invoke(nameof(OnStoppedRaycasting), 0.016f);
+                StopCoroutine(coroutine);
             }
+
+            coroutine = StartCoroutine(StopHightlightingCoroutine());
         }
 
-        private void OnStoppedRaycasting()
+        private IEnumerator StopHightlightingCoroutine()
         {
+            yield return null;
+            yield return null;
+
+            //Debug.Log($"stopping {name} highlight");
             StopHighlight();
             IsHighlighting = false;
+            coroutine = null;
         }
 
         protected abstract void StartHighlight(RaycastHit hit);

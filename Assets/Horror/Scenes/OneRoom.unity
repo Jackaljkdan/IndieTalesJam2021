@@ -904,7 +904,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  distance: 5
+  distance: 3
   mobileMaxTouchSeconds: 0.2
 --- !u!114 &403521127
 MonoBehaviour:
@@ -921,7 +921,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  distance: 5
+  distance: 3
 --- !u!1 &404787266
 GameObject:
   m_ObjectHideFlags: 0

@@ -973,6 +973,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4226870846018894379}
+  - component: {fileID: 2991850767279532472}
+  - component: {fileID: 8460067607546165390}
   m_Layer: 0
   m_Name: DoorAnchor
   m_TagString: Untagged
@@ -997,6 +999,37 @@ Transform:
   m_Father: {fileID: 4226870845630634943}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2991850767279532472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4226870846018894376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 3
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &8460067607546165390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4226870846018894376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4090e113d9ea0ac4c876d79964cf215d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alphaSeconds: 0.25
 --- !u!1 &4226870846073171367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1899,6 +1932,7 @@ GameObject:
   - component: {fileID: 4226870846770568759}
   - component: {fileID: 4226870846770568752}
   - component: {fileID: 5786526769297413643}
+  - component: {fileID: 4037481443742560315}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -2098,6 +2132,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4037481443742560315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4226870846770568757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1991ce1666f86cb4dbd912807ddafb92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 8460067607546165390}
 --- !u!1 &5389368921942917369
 GameObject:
   m_ObjectHideFlags: 0
