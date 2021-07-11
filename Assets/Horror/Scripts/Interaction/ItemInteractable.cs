@@ -22,6 +22,8 @@ namespace Horror.Interaction
 
         public float moveLerp = 0.2f;
 
+        public UnityEvent onInteraction = new UnityEvent();
+
         #endregion
 
         [Inject]
@@ -40,6 +42,8 @@ namespace Horror.Interaction
                 player.PlayRandom();
 
             StartCoroutine(MoveToCameraCoroutine());
+
+            onInteraction.Invoke();
         }
 
         private IEnumerator MoveToCameraCoroutine()
