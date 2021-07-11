@@ -20,6 +20,8 @@ namespace Horror
         [Inject(Id = "player.camera")]
         private Camera playerCamera = null;
 
+        private bool isFirst = true;
+
         private void Start()
         {
             UpdateRenderTextureSize();
@@ -42,6 +44,11 @@ namespace Horror
             renderTexture.DiscardContents();
             renderTexture.Release();
 
+            if (isFirst)
+                isFirst = true;
+            else
+                Destroy(renderTexture);
+
             //Debug.Log($"updating to {copy.width}x{copy.height}");
 
             return renderTexture;
@@ -50,10 +57,7 @@ namespace Horror
         private void OnRectTransformDimensionsChange()
         {
             if (playerCamera != null)
-            {
-                RenderTexture oldRenderTexture = UpdateRenderTextureSize();
-                Destroy(oldRenderTexture);
-            }
+                UpdateRenderTextureSize();
         }
     }
 }
