@@ -1,4 +1,5 @@
 using JK.Interaction;
+using JK.Sounds;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,8 +15,6 @@ namespace Horror.Interaction
         #region Inspector
 
         public string keyId;
-
-        public AudioClip unlockClip;
 
         public GameObject key;
 
@@ -44,8 +43,8 @@ namespace Horror.Interaction
         {
             //Debug.Log("unlock sound");
 
-            if (unlockClip != null && TryGetComponent(out AudioSource audioSource))
-                audioSource.PlayOneShot(unlockClip);
+            if (TryGetComponent(out RandomClipsPlayer player))
+                player.PlayRandom();
         }
 
         public void OnUnlockEnd()
