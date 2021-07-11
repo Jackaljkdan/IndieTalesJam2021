@@ -13,6 +13,8 @@ namespace Horror.Attention
 
         public float lerp = 2;
 
+        public Vector3 offset;
+
         #endregion
 
         public class Factory : PlaceholderFactory<ForceCameraLook> { }
@@ -22,7 +24,7 @@ namespace Horror.Attention
 
         private void LateUpdate()
         {
-            Quaternion targetRotation = Quaternion.LookRotation(transform.position - cameraTransform.position, Vector3.up);
+            Quaternion targetRotation = Quaternion.LookRotation(transform.position + offset - cameraTransform.position, Vector3.up);
 
             // N.B. we can't simply use the following because it rotates also on the z axis
             //cameraTransform.rotation = Quaternion.Slerp(cameraTransform.rotation, targetRotation, lerp * Time.deltaTime);

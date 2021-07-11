@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace Horror.Sequences
@@ -31,6 +32,9 @@ namespace Horror.Sequences
 
         [Inject(Id = "lucy")]
         private Transform lucy = null;
+
+        [Inject(Id = "lucy.head")]
+        private Transform lucyHead = null;
 
         [Inject(Id = "player.camera")]
         private RotationActuatorAxisInput inputRotation = null;
@@ -69,18 +73,26 @@ namespace Horror.Sequences
             yield return new WaitForSeconds(1);
 
             lucy.gameObject.SetActive(true);
-            lucy.GetComponent<ForceCameraLook>().enabled = true;
+            lucyHead.GetComponent<ForceCameraLook>().enabled = true;
 
-            inputRotation.enabled = false;
+            //inputRotation.enabled = false;
             inputMovement.enabled = false;
 
             GetComponent<AudioSource>().Play();
 
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(3);
 
             blackness.gameObject.SetActive(true);
             blackness.alpha = 0;
             blackness.DOFade(1, 1);
+
+            yield return new WaitForSeconds(1);
+
+            lucy.gameObject.SetActive(false);
+
+            yield return new WaitForSeconds(1);
+
+            SceneManager.LoadSceneAsync("OneRoom");
         }
     }
     
