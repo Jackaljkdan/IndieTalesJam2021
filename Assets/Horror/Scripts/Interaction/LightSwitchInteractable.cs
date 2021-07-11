@@ -12,11 +12,9 @@ namespace Horror.Interaction
     {
         #region Inspector
 
-        [SerializeField]
-        private LightTargetBehaviour lightTarget = null;
+        public LightTargetBehaviour lightTarget = null;
 
-        [SerializeField]
-        private AudioClip audioClip = null;
+        public AudioClip audioClip = null;
 
         public UnityEvent onInteraction = new UnityEvent();
 

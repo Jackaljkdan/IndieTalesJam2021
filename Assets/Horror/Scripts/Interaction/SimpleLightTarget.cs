@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace Horror.Interaction
 {
@@ -13,20 +14,25 @@ namespace Horror.Interaction
         [SerializeField]
         private Light target = null;
 
-        [SerializeField]
-        private bool startsOff = false;
+        [SerializeField, FormerlySerializedAs("startsOff")]
+        private bool _startsOff = false;
 
         #endregion
 
         public override Light Light => target;
+
+        public override bool StartsOff => _startsOff;
+
+        public override bool IsOn { get; protected set; }
 
         private float onIntensity;
 
         private void Start()
         {
             onIntensity = target.intensity;
+            IsOn = true;
 
-            if (startsOff)
+            if (StartsOff)
                 Toggle();
         }
 
@@ -35,10 +41,12 @@ namespace Horror.Interaction
             if (!enabled)
                 return;
 
-            if (target.intensity == onIntensity)
+            if (IsOn)
                 target.intensity = 0;
             else
                 target.intensity = onIntensity;
+
+            IsOn = !IsOn;
         }
     }
     

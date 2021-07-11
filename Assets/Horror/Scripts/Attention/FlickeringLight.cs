@@ -20,21 +20,27 @@ namespace Horror
         public float minWaitSeconds = 0.03f;
         public float maxWaitSeconds = 0.2f;
 
+        public bool flickerOnStart = true;
+
         #endregion
+
+        private Coroutine coroutine;
 
         public void StartFlicker()
         {
-            StartCoroutine(FlickerCoroutine());
+            coroutine = StartCoroutine(FlickerCoroutine());
         }
 
         public void StopFlicker()
         {
-            StopCoroutine(nameof(FlickerCoroutine));
+            if (coroutine != null)
+                StopCoroutine(coroutine);
         }
 
         private void Start()
         {
-            StartFlicker();
+            if (flickerOnStart)
+                StartFlicker();
         }
 
         private IEnumerator FlickerCoroutine()

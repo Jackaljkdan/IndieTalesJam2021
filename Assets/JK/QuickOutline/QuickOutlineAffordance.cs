@@ -18,7 +18,7 @@ namespace JK.QuickOutline
         private void Reset()
         {
             var outline = GetComponent<Outline>();
-            outline.OutlineMode = Outline.Mode.OutlineAndSilhouette;
+            outline.OutlineMode = Outline.Mode.OutlineAll;
             outline.OutlineWidth = 4;
         }
 

@@ -10,6 +10,10 @@ namespace Horror.Interaction
     {
         Light Light { get; }
 
+        bool StartsOff { get; }
+
+        bool IsOn { get; }
+
         void Toggle();
     }
     
