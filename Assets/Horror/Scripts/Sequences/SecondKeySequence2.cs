@@ -28,6 +28,9 @@ namespace Horror.Sequences
         [Inject(Id = "coatrack")]
         private Transform coatRack = null;
 
+        [Inject(Id = "lucy")]
+        private Transform lucy = null;
+
         [Inject]
         private void Inject()
         {
@@ -36,6 +39,7 @@ namespace Horror.Sequences
 
         private void OnKeyInteraction()
         {
+            key.onInteraction.RemoveListener(OnKeyInteraction);
             StartCoroutine(SequenceCoroutine());
         }
 
@@ -47,6 +51,12 @@ namespace Horror.Sequences
 
             libraryStanding.gameObject.SetActive(false);
             libraryFallen.gameObject.SetActive(true);
+
+            yield return new WaitForSeconds(1f);
+
+            lucy.gameObject.SetActive(true);
+
+            Destroy(gameObject);
         }
     }
     

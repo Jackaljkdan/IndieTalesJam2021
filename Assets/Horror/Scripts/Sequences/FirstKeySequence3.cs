@@ -41,7 +41,7 @@ namespace Horror.Sequences
             var lucyBreathingSource = lucy.GetComponent<LucyBreathing>().breathingPlayer.AudioSource;
             yield return lucyBreathingSource.DOFade(0, 0.25f).WaitForCompletion();
 
-            lucy.gameObject.SetActive(false);
+            Destroy(lucy.gameObject);
             coatRack.gameObject.SetActive(true);
 
             music.DOFade(1, 1);
