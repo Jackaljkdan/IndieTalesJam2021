@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6177066802456523926}
   - component: {fileID: 6177066802456523927}
   - component: {fileID: 6177066802456523944}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 6177066802534281273}
   - component: {fileID: 6177066802534281274}
   - component: {fileID: 6177066802534281275}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 7716251559932421541}
   - component: {fileID: 136297787170536588}
   - component: {fileID: 1513890359056239764}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -340,7 +340,7 @@ GameObject:
   - component: {fileID: 6177066802890212457}
   - component: {fileID: 6765987537660651225}
   - component: {fileID: 6629282859851782087}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -458,7 +458,7 @@ GameObject:
   - component: {fileID: 6177066803618221498}
   - component: {fileID: 6429520983935479275}
   - component: {fileID: 3157081786202126001}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Drawer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -529,7 +529,7 @@ GameObject:
   - component: {fileID: 6177066804128954344}
   - component: {fileID: 6177066804128954345}
   - component: {fileID: 6177066804128954346}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -632,6 +632,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Handle (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2840403659818016715, guid: 70ec21e6e6152524ca008d89545ca512,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3928014850199636909, guid: 70ec21e6e6152524ca008d89545ca512,
         type: 3}
       propertyPath: m_RootOrder
@@ -721,6 +726,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Handle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2840403659818016715, guid: 70ec21e6e6152524ca008d89545ca512,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3928014850199636909, guid: 70ec21e6e6152524ca008d89545ca512,
         type: 3}

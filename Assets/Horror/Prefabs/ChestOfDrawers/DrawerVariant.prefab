@@ -112,11 +112,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 617c4c55e908f6243a95ae397ea9013e, type: 2}
-    - target: {fileID: 6429520983935479275, guid: 815e227af53ff1646863544800b6a023,
-        type: 3}
-      propertyPath: delta.z
-      value: -0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 8230082542034871854, guid: 815e227af53ff1646863544800b6a023,
         type: 3}
       propertyPath: m_Mesh
