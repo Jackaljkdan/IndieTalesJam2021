@@ -2,6 +2,7 @@ using Horror.Interaction;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
@@ -15,6 +16,8 @@ namespace Horror.Sequences
         public GameObject nextSequence;
 
         public List<LightTargetBehaviour> lightsToTurnOff;
+
+        public List<LightTargetBehaviour> lightsToKeepOff;
 
         #endregion
 
@@ -42,7 +45,7 @@ namespace Horror.Sequences
 
         protected override void PerformTriggeredAction()
         {
-            foreach (var light in lightsToTurnOff)
+            foreach (var light in lightsToTurnOff.Concat(lightsToKeepOff))
                 if (light != null && light.IsOn)
                     light.Toggle();
 
