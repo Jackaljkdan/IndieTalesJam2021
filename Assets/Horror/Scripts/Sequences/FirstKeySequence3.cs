@@ -44,7 +44,7 @@ namespace Horror.Sequences
             lucy.gameObject.SetActive(false);
             coatRack.gameObject.SetActive(true);
 
-            music.DOFade(1, 0.3f);
+            music.DOFade(1, 1);
 
             onFinished.Invoke();
 

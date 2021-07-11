@@ -28,13 +28,19 @@ namespace Horror
 
         public void StartFlicker()
         {
+            if (coroutine != null)
+                return;
+
             coroutine = StartCoroutine(FlickerCoroutine());
         }
 
         public void StopFlicker()
         {
-            if (coroutine != null)
-                StopCoroutine(coroutine);
+            if (coroutine == null)
+                return;
+
+            StopCoroutine(coroutine);
+            coroutine = null;
         }
 
         private void Start()

@@ -43,7 +43,7 @@ namespace Horror.Sequences
         protected override void PerformTriggeredAction()
         {
             foreach (var light in lightsToTurnOff)
-                if (light.IsOn)
+                if (light != null && light.IsOn)
                     light.Toggle();
 
             lucy.gameObject.SetActive(true);
@@ -56,7 +56,7 @@ namespace Horror.Sequences
                 finalSequence.onFinished.RemoveListener(OnFinished);
 
             foreach (var light in lightsToTurnOff)
-                if (!light.IsOn)
+                if (light != null && !light.IsOn)
                     light.Toggle();
 
             Destroy(gameObject);
