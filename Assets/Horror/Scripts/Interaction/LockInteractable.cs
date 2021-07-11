@@ -31,12 +31,17 @@ namespace Horror.Interaction
 
         protected override void PerformInteraction(RaycastHit hit)
         {
+            if (!enabled)
+                return;
+
             if (!inventory.items.Contains(keyId))
                 return;
 
             //Debug.Log("unlocking");
             key.SetActive(true);
             GetComponent<Animator>().Play("Unlock");
+
+            enabled = false;
         }
 
         public void OnUnlockSound()
