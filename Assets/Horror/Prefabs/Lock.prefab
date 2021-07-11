@@ -561,6 +561,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7feb43f486a0d564bb128e2bbb23e2b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorUnlocked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7087769702902964224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -575,6 +578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - {fileID: 4346358902886238167}
+  - {fileID: 4299969202486686370}
   _identifier: 
   _useSceneContext: 0
   _context: {fileID: 0}

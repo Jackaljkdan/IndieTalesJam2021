@@ -37,6 +37,8 @@ namespace Horror.Interaction
         [SerializeField]
         private AudioClip lockedClip = null;
 
+        public UnityEvent onInteraction = new UnityEvent();
+
         #endregion
 
         public bool IsOpen
@@ -64,6 +66,8 @@ namespace Horror.Interaction
             {
                 if (!audioSource.isPlaying)
                     audioSource.PlayOneShot(lockedClip);
+
+                onInteraction.Invoke();
 
                 return;
             }
@@ -93,6 +97,8 @@ namespace Horror.Interaction
             }
 
             IsAnimating = true;
+
+            onInteraction.Invoke();
         }
 
         public void ForceClose(bool disableCollider)

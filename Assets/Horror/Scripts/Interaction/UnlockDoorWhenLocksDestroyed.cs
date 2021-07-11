@@ -11,7 +11,7 @@ namespace Horror.Interaction
     {
         #region Inspector
 
-
+        public UnityEvent onDoorUnlock = new UnityEvent();
 
         #endregion
 
@@ -30,7 +30,10 @@ namespace Horror.Interaction
                     destroyedCount++;
 
             if (destroyedCount == locks.Count)
+            {
                 door.IsLocked = false;
+                onDoorUnlock.Invoke();
+            }
         }
 
     }
