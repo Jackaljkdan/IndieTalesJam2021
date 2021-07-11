@@ -54,7 +54,8 @@ namespace Horror.Interaction
             }
             while ((tr.position - target).sqrMagnitude > 0.4f);
 
-            Destroy(gameObject);
+            transform.SetParent(cameraTransform);
+            gameObject.SetActive(false);
         }
 
         private Vector3 GetTargetPosition()
