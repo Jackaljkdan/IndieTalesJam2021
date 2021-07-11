@@ -15,13 +15,18 @@ namespace JK.Sounds
 
         #endregion
 
+        public AudioClip LastPlayedTrack { get; private set; }
+
+        public AudioSource AudioSource => GetComponent<AudioSource>();
+
         public void PlayRandom()
         {
             try
             {
                 int randomIndex = UnityEngine.Random.Range(0, clips.Count);
                 AudioClip randomClip = clips[randomIndex];
-                GetComponent<AudioSource>().PlayOneShot(randomClip);
+                AudioSource.PlayOneShot(randomClip);
+                LastPlayedTrack = randomClip;
             }
             catch (NullReferenceException)
             {

@@ -16,9 +16,14 @@ namespace Horror.Lucy
 
         #endregion
 
-        private void Start()
+        private void OnEnable()
         {
             JerkAndSchedule();
+        }
+
+        private void OnDisable()
+        {
+            Unschedule();
         }
 
         public void JerkAndSchedule()

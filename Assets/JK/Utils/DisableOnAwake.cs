@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace JK.Utils
 {
-    public class DisableOnStart : MonoBehaviour
+    public class DisableOnAwake : MonoBehaviour
     {
         #region Inspector
 
@@ -14,7 +14,7 @@ namespace JK.Utils
 
         #endregion
 
-        private void Start()
+        private void Awake()
         {
             gameObject.SetActive(false);
         }
