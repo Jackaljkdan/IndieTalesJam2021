@@ -7,7 +7,6 @@ using UnityEngine.Events;
 
 namespace Horror.Interaction
 {
-    [RequireComponent(typeof(Collider))]
     public abstract class TriggeredAction : MonoBehaviour
     {
         #region Inspector
@@ -18,8 +17,14 @@ namespace Horror.Interaction
         [SerializeField]
         private bool destroyEntireGameobject = false;
 
+        [SerializeField]
+        private bool destroyColliderOnly = false;
+
         private void Reset()
         {
+            if (!TryGetComponent(out Collider _))
+                gameObject.AddComponent<BoxCollider>();
+
             GetComponent<Collider>().isTrigger = true;
         }
 
@@ -33,6 +38,8 @@ namespace Horror.Interaction
             {
                 if (destroyEntireGameobject)
                     Destroy(gameObject);
+                else if (destroyColliderOnly)
+                    Destroy(GetComponent<Collider>());
                 else
                     Destroy(this);
             }

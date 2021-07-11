@@ -14,6 +14,8 @@ namespace Horror.Sequences
 
         public GameObject nextSequence;
 
+        public List<LightTargetBehaviour> lightsToTurnOff;
+
         #endregion
 
         [Inject(Id = "player.camera")]
@@ -22,9 +24,13 @@ namespace Horror.Sequences
         [Inject(Id = "lucy")]
         private Transform lucy = null;
 
+        [Inject]
+        private FirstKeySequence3 finalSequence = null;
+
         private void Awake()
         {
             lucy.gameObject.SetActive(false);
+            finalSequence.onFinished.AddListener(OnFinished);
         }
 
         protected override bool CanPerformAction()
@@ -36,8 +42,24 @@ namespace Horror.Sequences
 
         protected override void PerformTriggeredAction()
         {
+            foreach (var light in lightsToTurnOff)
+                if (light.IsOn)
+                    light.Toggle();
+
             lucy.gameObject.SetActive(true);
             nextSequence.SetActive(true);
+        }
+
+        private void OnFinished()
+        {
+            if (finalSequence != null)
+                finalSequence.onFinished.RemoveListener(OnFinished);
+
+            foreach (var light in lightsToTurnOff)
+                if (!light.IsOn)
+                    light.Toggle();
+
+            Destroy(gameObject);
         }
     }
     

@@ -16,6 +16,9 @@ namespace Horror.Interaction
         [SerializeField]
         private bool destroyEntireGameobject = false;
 
+        [SerializeField]
+        private bool destroyColliderOnly = false;
+
         #endregion
 
         private void OnTriggerStay(Collider other)
@@ -28,6 +31,8 @@ namespace Horror.Interaction
                 {
                     if (destroyEntireGameobject)
                         Destroy(gameObject);
+                    else if (destroyColliderOnly)
+                        Destroy(GetComponent<Collider>());
                     else
                         Destroy(this);
                 }

@@ -15,7 +15,7 @@ namespace Horror.Sequences
     {
         #region Inspector
 
-
+        public UnityEvent onFinished = new UnityEvent();
 
         #endregion
 
@@ -45,6 +45,10 @@ namespace Horror.Sequences
             coatRack.gameObject.SetActive(true);
 
             music.DOFade(1, 0.3f);
+
+            onFinished.Invoke();
+
+            Destroy(gameObject);
         }
     }
 }
