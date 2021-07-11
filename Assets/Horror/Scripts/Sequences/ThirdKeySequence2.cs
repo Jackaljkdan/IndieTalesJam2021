@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Horror.Interaction;
 using Horror.Lucy;
 using System;
@@ -26,6 +27,9 @@ namespace Horror.Sequences
         [Inject(Id = "lucy")]
         private Transform lucy = null;
 
+        [Inject(Id = "music")]
+        private AudioSource music = null;
+
         protected override void PerformTriggeredAction()
         {
             if (firstSequence != null)
@@ -40,6 +44,8 @@ namespace Horror.Sequences
         private IEnumerator SequenceCoroutine()
         {
             lucy.GetComponent<LucyBreathing>().enabled = true;
+
+            music.DOFade(0, 0.3f);
 
             foreach (var bajour in bajours)
             {

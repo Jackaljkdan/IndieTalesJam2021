@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Horror.Interaction;
 using System;
 using System.Collections;
@@ -25,6 +26,9 @@ namespace Horror.Sequences
         [Inject(Id = "coatrack")]
         private Transform coatRack = null;
 
+        [Inject(Id = "music")]
+        private AudioSource music = null;
+
         private void Start()
         {
             secondSequence.onFinished.AddListener(OnSecondSequenceFinished);
@@ -45,6 +49,7 @@ namespace Horror.Sequences
         {
             Destroy(lucy.gameObject);
             coatRack.gameObject.SetActive(true);
+            music.DOFade(1, 1);
         }
     }
     
