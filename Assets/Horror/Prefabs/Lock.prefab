@@ -489,6 +489,8 @@ GameObject:
   - component: {fileID: 2500479739520193919}
   - component: {fileID: 7900075369783069548}
   - component: {fileID: 4346358902886238167}
+  - component: {fileID: 4299969202486686370}
+  - component: {fileID: 7087769702902964224}
   m_Layer: 0
   m_Name: Lock
   m_TagString: Untagged
@@ -546,6 +548,36 @@ MonoBehaviour:
   keyId: key
   unlockClip: {fileID: 0}
   key: {fileID: 6698536431809523508}
+--- !u!114 &4299969202486686370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2500479739520193908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7feb43f486a0d564bb128e2bbb23e2b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7087769702902964224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2500479739520193908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - {fileID: 4346358902886238167}
+  _identifier: 
+  _useSceneContext: 0
+  _context: {fileID: 0}
+  _bindType: 0
 --- !u!1 &7083301155215363011
 GameObject:
   m_ObjectHideFlags: 0
