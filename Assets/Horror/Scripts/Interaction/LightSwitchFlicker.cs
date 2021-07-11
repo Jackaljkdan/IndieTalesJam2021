@@ -22,7 +22,12 @@ namespace Horror.Interaction
 
         private void Start()
         {
-            GetComponent<FlickeringLight>().enabled = !lightSwitch.lightTarget.StartsOff;
+            var flickering = GetComponent<FlickeringLight>();
+            flickering.enabled = !lightSwitch.lightTarget.StartsOff;
+
+            if (flickering.enabled)
+                flickering.StartFlicker();
+
             lightSwitch.onInteraction.AddListener(OnInteraction);
         }
 
