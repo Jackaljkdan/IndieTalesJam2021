@@ -1,5 +1,6 @@
 using DG.Tweening;
 using JK.Interaction;
+using JK.Sounds;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,9 +16,11 @@ namespace Horror.Interaction
 
         public string id;
 
-        public float moveLerp = 0.2f;
+        public float behindCameraMultiplier = 1f;
 
-        public AudioClip clip;
+        public Vector3 behindCameraOffset = new Vector3(0, -0.2f, 0);
+
+        public float moveLerp = 0.2f;
 
         #endregion
 
@@ -33,8 +36,8 @@ namespace Horror.Interaction
 
             inventory.items.Add(id);
 
-            if (clip != null && TryGetComponent(out AudioSource audioSource))
-                audioSource.PlayOneShot(clip);
+            if (TryGetComponent(out RandomClipsPlayer player))
+                player.PlayRandom();
 
             StartCoroutine(MoveToCameraCoroutine());
         }
@@ -53,15 +56,18 @@ namespace Horror.Interaction
                 yield return null;
             }
             while ((tr.position - target).sqrMagnitude > 0.4f);
-
+            
             transform.SetParent(cameraTransform);
-            gameObject.SetActive(false);
+
+            yield return new WaitForSeconds(5);
+
+            Destroy(gameObject);
         }
 
         private Vector3 GetTargetPosition()
         {
-            Vector3 target = cameraTransform.position - cameraTransform.forward * 0.5f;
-            target.y -= 0.2f;
+            Vector3 target = cameraTransform.position - cameraTransform.forward * behindCameraMultiplier;
+            target += behindCameraOffset;
 
             return target;
         }
