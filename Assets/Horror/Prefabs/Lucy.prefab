@@ -377,6 +377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   secondsBetweenBreaths: 2
   breathingPlayer: {fileID: 553666525984296263}
+  breathOnEnable: 1
 --- !u!114 &553666525786770192
 MonoBehaviour:
   m_ObjectHideFlags: 0

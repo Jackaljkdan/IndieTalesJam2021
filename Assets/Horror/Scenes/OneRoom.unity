@@ -2495,7 +2495,7 @@ GameObject:
   - component: {fileID: 303176416}
   - component: {fileID: 303176415}
   - component: {fileID: 303176417}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FirstSequenceTrigger (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3680,7 +3680,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 23
   distance: 2
   mobileMaxTouchSeconds: 0.2
 --- !u!114 &403521127
@@ -3697,7 +3697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 23
   distance: 2
 --- !u!1 &404787266
 GameObject:
@@ -6280,7 +6280,7 @@ GameObject:
   - component: {fileID: 826293370}
   - component: {fileID: 826293371}
   - component: {fileID: 826293372}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FirstSequenceTrigger (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14811,7 +14811,7 @@ GameObject:
   - component: {fileID: 1876049159}
   - component: {fileID: 1876049158}
   - component: {fileID: 1876049160}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FirstSequenceTrigger (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
