@@ -38,6 +38,9 @@ namespace Horror.Sequences
         [Inject(Id = "player")]
         private MovementActuatorAxisInput inputMovement = null;
 
+        [Inject(Id = "blackness")]
+        private CanvasGroup blackness = null;
+
         private void Start()
         {
             foreach (var un in unlockers)
@@ -72,6 +75,12 @@ namespace Horror.Sequences
             inputMovement.enabled = false;
 
             GetComponent<AudioSource>().Play();
+
+            yield return new WaitForSeconds(2);
+
+            blackness.gameObject.SetActive(true);
+            blackness.alpha = 0;
+            blackness.DOFade(1, 1);
         }
     }
     
