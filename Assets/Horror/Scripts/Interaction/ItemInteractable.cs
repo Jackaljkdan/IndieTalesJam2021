@@ -24,6 +24,9 @@ namespace Horror.Interaction
 
         public UnityEvent onInteraction = new UnityEvent();
 
+        [SerializeField]
+        private new Collider collider = null;
+
         #endregion
 
         [Inject]
@@ -34,7 +37,7 @@ namespace Horror.Interaction
 
         protected override void PerformInteraction(RaycastHit hit)
         {
-            GetComponent<Collider>().enabled = false;
+            collider.enabled = false;
 
             inventory.items.Add(id);
 

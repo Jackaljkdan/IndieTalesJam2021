@@ -1849,8 +1849,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: key
+  behindCameraMultiplier: 1
+  behindCameraOffset: {x: 0, y: -0.2, z: 0}
   moveLerp: 0.1
-  clip: {fileID: 0}
+  onInteraction:
+    m_PersistentCalls:
+      m_Calls: []
+  collider: {fileID: 2909779321476305718}
 --- !u!82 &297961689090053330
 AudioSource:
   m_ObjectHideFlags: 0
