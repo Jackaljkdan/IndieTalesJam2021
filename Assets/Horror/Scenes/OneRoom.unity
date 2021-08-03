@@ -10825,6 +10825,7 @@ GameObject:
   - component: {fileID: 403521125}
   - component: {fileID: 403521126}
   - component: {fileID: 403521127}
+  - component: {fileID: 403521128}
   m_Layer: 9
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -10938,7 +10939,6 @@ MonoBehaviour:
   _components:
   - {fileID: 403521121}
   - {fileID: 403521122}
-  - {fileID: 403521124}
   _identifier: player.camera
   _useSceneContext: 1
   _context: {fileID: 0}
@@ -10976,6 +10976,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1047
   distance: 2
+--- !u!114 &403521128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403521119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96cf442421e544a4895e1b276a7a89ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 3
+  touchMultiplier: 0.1
 --- !u!1 &404787266
 GameObject:
   m_ObjectHideFlags: 0
@@ -23666,6 +23680,7 @@ GameObject:
   - component: {fileID: 1066668035}
   - component: {fileID: 1066668037}
   - component: {fileID: 1066668038}
+  - component: {fileID: 1066668039}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -23816,6 +23831,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inEditor: 1
+--- !u!114 &1066668039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066668029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60e5cb5157e7d6b41818987612fea116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  multiplier: 0.01
+  threshold: 1
 --- !u!43 &1068041337
 Mesh:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using JK.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,11 +11,18 @@ namespace Horror.Actuators.Input
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(IRotationActuator))]
-    public class RotationActuatorAxisInput : MonoBehaviour
+    public class RotationActuatorAxisInput : RotationActuatorInputBehaviour
     {
         #region Inspector fields
 
         #endregion
+
+        [Inject]
+        private void Inject()
+        {
+            if (!PlatformUtils.IsDesktop())
+                Destroy(this);
+        }
 
         private void LateUpdate()
         {

@@ -16,27 +16,26 @@ namespace Horror
         #endregion
 
         [Inject(Id = "player.camera")]
-        private RotationActuatorAxisInput inputRotation = null;
+        private Transform playerCamera = null;
 
         [Inject(Id = "player")]
-        private MovementActuatorAxisInput inputMovement = null;
+        private Transform player = null;
 
         [Inject]
         private CanvasGroup ui = null;
         
-        [Inject]
-        private void Inject()
+        private void Start()
         {
-            inputRotation.enabled = false;
-            inputMovement.enabled = false;
+            playerCamera.GetComponent<RotationActuatorInputBehaviour>().enabled = false;
+            player.GetComponent<MovementActuatorInputBehaviour>().enabled = false;
         }
 
         private void Update()
         {
             if (UnityEngine.Input.GetAxis("Fire1") == 1)
             {
-                inputRotation.enabled = true;
-                inputMovement.enabled = true;
+                playerCamera.GetComponent<RotationActuatorInputBehaviour>().enabled = true;
+                player.GetComponent<MovementActuatorInputBehaviour>().enabled = true;
                 Cursor.lockState = CursorLockMode.Locked;
 
                 CanvasGroup justInCase = ui;

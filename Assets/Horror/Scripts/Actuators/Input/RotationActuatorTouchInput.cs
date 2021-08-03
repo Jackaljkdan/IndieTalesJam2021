@@ -1,14 +1,16 @@
+using JK.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 namespace Horror.Actuators.Input
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(IRotationActuator))]
-    public class RotationActuatorTouchInput : MonoBehaviour
+    public class RotationActuatorTouchInput : RotationActuatorInputBehaviour
     {
         #region Inspector
 
@@ -18,16 +20,11 @@ namespace Horror.Actuators.Input
 
         #endregion
 
-        private void Start()
+        [Inject]
+        private void Inject()
         {
-            // TODO: this check is also in MovementActuatorTouchInput, unify in some JK code
-            if (!Application.isMobilePlatform)
-            {
+            if (!PlatformUtils.IsMobile())
                 Destroy(this);
-                return;
-            }
-
-            Destroy(GetComponent<RotationActuatorAxisInput>());
         }
 
         private void LateUpdate()

@@ -1,3 +1,4 @@
+using JK.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,19 +25,14 @@ namespace Horror.Actuators.Input
 
         private int? currentFingerId = null;
 
-        [Inject(Id = "dev")]
-        private Text devTextUi = null;
+        //[Inject(Id = "dev")]
+        //private Text devTextUi = null;
 
-        private void Start()
+        [Inject]
+        private void Inject()
         {
-            // TODO: isMobilePlatform returns false on webgl even when executing on mobile
-            if (!Application.isMobilePlatform)
-            {
+            if (!PlatformUtils.IsMobile())
                 Destroy(this);
-                return;
-            }
-
-            Destroy(GetComponent<MovementActuatorAxisInput>());
         }
 
         private void Update()
@@ -57,23 +53,24 @@ namespace Horror.Actuators.Input
             Touch touch = relevantTouch.Value;
             currentFingerId = touch.fingerId;
 
-            devTextUi.text = $"{touch.deltaPosition}";
+            //devTextUi.text = $"{touch.deltaPosition}";
 
             switch (touch.phase)
             {
+                case TouchPhase.Moved:
                 case TouchPhase.Began:
                     input = Vector3.forward;
                     break;
-                case TouchPhase.Moved:
-                    if (Mathf.Abs(touch.deltaPosition.x) >= threshold)
-                        input.x += touch.deltaPosition.x * multiplier * 60 * Time.deltaTime;
+                //case TouchPhase.Moved:
+                //    if (Mathf.Abs(touch.deltaPosition.x) >= threshold)
+                //        input.x += touch.deltaPosition.x * multiplier * 60 * Time.deltaTime;
 
-                    if (Mathf.Abs(touch.deltaPosition.y) >= threshold)
-                        input.z += touch.deltaPosition.y * multiplier * 60 * Time.deltaTime;
+                //    if (Mathf.Abs(touch.deltaPosition.y) >= threshold)
+                //        input.z += touch.deltaPosition.y * multiplier * 60 * Time.deltaTime;
 
-                    input = Vector3.ClampMagnitude(input, 1);
+                //    input = Vector3.ClampMagnitude(input, 1);
 
-                    break;
+                //    break;
             }
 
             GetComponent<IMovementActuator>().Input = input;

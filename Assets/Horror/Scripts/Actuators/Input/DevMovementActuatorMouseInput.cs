@@ -24,12 +24,6 @@ namespace Horror.Actuators.Input
 
         private void Start()
         {
-            if (Application.isMobilePlatform)
-            {
-                Destroy(this);
-                return;
-            }
-
             Destroy(GetComponent<MovementActuatorAxisInput>());
             Destroy(GetComponent<MovementActuatorTouchInput>());
         }

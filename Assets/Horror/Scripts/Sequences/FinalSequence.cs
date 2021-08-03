@@ -36,11 +36,8 @@ namespace Horror.Sequences
         [Inject(Id = "lucy.head")]
         private Transform lucyHead = null;
 
-        [Inject(Id = "player.camera")]
-        private RotationActuatorAxisInput inputRotation = null;
-
         [Inject(Id = "player")]
-        private MovementActuatorAxisInput inputMovement = null;
+        private Transform player = null;
 
         [Inject(Id = "blackness")]
         private CanvasGroup blackness = null;
@@ -75,8 +72,7 @@ namespace Horror.Sequences
             lucy.gameObject.SetActive(true);
             lucyHead.GetComponent<ForceCameraLook>().enabled = true;
 
-            //inputRotation.enabled = false;
-            inputMovement.enabled = false;
+            player.GetComponent<MovementActuatorInputBehaviour>().enabled = false;
 
             GetComponent<AudioSource>().Play();
 
