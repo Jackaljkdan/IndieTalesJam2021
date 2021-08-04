@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Horror.Input
@@ -24,7 +25,10 @@ namespace Horror.Input
 
         private bool hasAlreadyFired = false;
 
-        private float touchSeconds;
+        private Dictionary<int, float> touchSeconds = new Dictionary<int, float>();
+
+        //[Inject(Id = "dev")]
+        //private Text devTextUi = null;
 
         private void Start()
         {
@@ -57,27 +61,54 @@ namespace Horror.Input
 
         private void MobileUpdate()
         {
-            if (UnityEngine.Input.touches.Length == 0)
+            int relevantFingers = 0;
+            int endingFingers = 0;
+
+            //devTextUi.text = $"max: {mobileMaxTouchSeconds}\n";
+
+            for (int i = 0; i < UnityEngine.Input.touchCount; i++)
             {
-                touchSeconds = 0;
-                hasAlreadyFired = false;
-                return;
+                var touch = UnityEngine.Input.GetTouch(i);
+
+                if (touch.position.x < Screen.width / 2f)
+                {
+                    touchSeconds.Remove(touch.fingerId);
+                    continue;
+                }
+
+                relevantFingers++;
+
+                try
+                {
+                    touchSeconds[touch.fingerId] += Time.deltaTime;
+                }
+                catch (KeyNotFoundException)
+                {
+                    touchSeconds[touch.fingerId] = Time.deltaTime;
+                }
+
+                if (touch.phase != TouchPhase.Ended)
+                    continue;
+
+                endingFingers++;
+
+                float fingerSeconds = touchSeconds[touch.fingerId];
+                touchSeconds.Remove(touch.fingerId);
+
+                if (hasAlreadyFired)
+                    continue;
+
+                if (fingerSeconds <= mobileMaxTouchSeconds)
+                {
+                    Raycast();
+                    hasAlreadyFired = true;
+                }
             }
 
-            if (hasAlreadyFired)
-                return;
+            hasAlreadyFired = false;
 
-            touchSeconds += Time.deltaTime;
-
-            if (touchSeconds < mobileMaxTouchSeconds
-                && UnityEngine.Input.touches.Length == 1
-                && UnityEngine.Input.touches[0].phase == TouchPhase.Ended
-                && UnityEngine.Input.touches[0].position.x > Screen.width / 2.0f
-                )
-            {
-                Raycast();
-                hasAlreadyFired = true;
-            }
+            //devTextUi.text += $"relevant: {relevantFingers} ending: {endingFingers}\n";
+            //devTextUi.text += $"secs: {string.Join(" ", touchSeconds.Select(kvp => kvp.Value.ToString("0.##")))}\n";
         }
 
         private void Raycast()
